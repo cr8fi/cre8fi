@@ -7,7 +7,7 @@ const NavBar = () => {
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   return (
-    <nav className=" top-0 z-50 h-[100px] w-full  shadow-md flex justify-center">
+    <nav className=" top-0 z-50 h-[100px] w-full bg-[#160F22] shadow-md flex justify-center">
       <div className="w-[1440px] flex items-center justify-between px-6">
         {/* Logo */}
         <div

@@ -3,7 +3,7 @@ import heroImage from "../assets/hero.png";
 
 const HeroSection = () => {
   return (
-    <section className="min-h-screen w-full text-white px-6 py-20 font-['Sora'] bg-[url('./assets/bg.svg')] bg-cover flex items-center justify-center bg-[#030614]">
+    <section className="min-h-screen w-full text-white px-6 py-20 font-['Sora'] flex items-center justify-center bg-[#030614]">
       <div className="text-center max-w-4xl mx-auto flex flex-col gap-10">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight  opacity-0 animate-fade-up">
           Experience new Opportunities with Cre8Fi

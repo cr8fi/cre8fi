@@ -1,0 +1,9 @@
+List of users: GET /api/users/
+
+Create a user: POST /api/users/
+
+Retrieve a user: GET /api/users/<id>/
+
+Update a user: PUT /api/users/<id>/
+
+Delete a user: DELETE /api/users/<id>/
