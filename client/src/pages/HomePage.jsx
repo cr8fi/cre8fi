@@ -1,8 +1,7 @@
 import React from "react";
 import NavBar from "../components/NavBar/NavBar";
 import HeroSection from "../components/HeroSection";
-import MissionSection from "../components/MissionSection";
-import VisionSection from "../components/VisionSection";
+import MissionAndVision from "../components/MissionAndVision";
 import FeaturesSection from "../components/FeaturesSection";
 import HowItWorksSection from "../components/HowItWorks";
 import FAQSection from "../components/FaqSection";
@@ -12,12 +11,11 @@ import FooterSection from "../components/Footer";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen  bg-[url('../../assets/bg.png')] bg-cover bg-center text-white ">
+    <div className="min-h-screen   text-white ">
       <NavBar />
       <HeroSection />
-      <MissionSection />
-      <VisionSection />
-      <FeaturesSection />
+      <MissionAndVision />
+     <FeaturesSection />
       <HowItWorksSection />
       <FAQSection />
       <NextStepSection />
