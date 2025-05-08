@@ -5,7 +5,7 @@ import PasswordResetCode from './pages/auth/PasswordResetCode';
 import SuccessScreen from './components/SuccessScreen';
 import NewPassword from './pages/auth/NewPassword';
 import Login from './pages/auth/Login';
-import HomePage from "./components/HomePage";
+import HomePage from "./pages/HomePage";
 
 function App() {
   return (
