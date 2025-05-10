@@ -29,7 +29,7 @@ const features = [
 
 const FeaturesSection = () => {
   return (
-    <section className="font-['Sora'] bg-[url('./assets/bg.svg')] bg-cover bg-center bg-no-repeat py-20 px-6 text-white flex justify-center">
+    <section className="container font-['Sora'] bg-[url('/assets/bg.svg')] bg-cover bg-center bg-no-repeat py-20 px-6 text-white flex justify-center">
       <div className="w-full max-w-[1202.47px]">
         <div className="w-[768.5px] mx-auto flex flex-col items-center gap-[9px] mb-[60px] text-center">
           <h2 className="text-5xl md:text-6xl font-bold">Our Features</h2>
