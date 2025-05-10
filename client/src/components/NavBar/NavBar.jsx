@@ -35,8 +35,8 @@ const NavBar = () => {
   ];
 
   return (
-    <nav className="container top-0 z-50 h-[100px] w-full shadow-md flex justify-center bg-[url('./assets/bg.svg')] bg-cover">
-      <div className="w-[1440px] flex items-center justify-between px-6">
+    <nav className="container top-0 z-50 h-[100px] w-full shadow-md flex justify-center bg-cover  bg-gradient-to-b from-[#1a0b2e]  to-[#130a1c]">
+      <div className="w-full flex items-center justify-between px-6">
         {/* Logo */}
         <div
           className="w-[115.22px] h-[46px] text-[36px] leading-[1] font-bold text-white font-spaceGrotesk tracking-normal"
