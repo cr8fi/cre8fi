@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const HeroSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="relative min-h-screen w-full text-white px-6  pb-40 md:pb-60 font-['Sora'] bg-[url('./assets/bg.svg')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center overflow-hidden">
+    <section className="relative min-h-screen w-full text-white px-6  pb-40 md:pb-60 font-['Sora'] bg-[url('assets/bg.png')] bg-cover bg-center bg-no-repeat flex flex-col items-center justify-center overflow-hidden">
       {/* Content */}
       <div className="text-center max-w-4xl mx-auto flex flex-col gap-10 z-10 relative">
         <h1 className="text-4xl md:text-6xl font-bold leading-tight opacity-0 animate-fade-up">
