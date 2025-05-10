@@ -6,6 +6,7 @@ import SuccessScreen from './components/SuccessScreen';
 import NewPassword from './pages/auth/NewPassword';
 import Login from './pages/auth/Login';
 import HomePage from "./pages/HomePage";
+import Home from "./pages/Home";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/new" element={<NewPassword />} />
         <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
+        <Route path="/home" element={<Home />} />
       
       </Routes>
   )}

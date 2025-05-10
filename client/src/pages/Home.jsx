@@ -1,10 +1,10 @@
-import { Facebook, Instagram, aedin, Twitter } from "lucide-react"
+import { Facebook, Instagram, Twitter } from "lucide-react"
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
+// import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e] to-[#130a1c] text-white">
+    <div className="min-h-screen bg-gradient-to-b from-[#1a0b2e]  to-[#130a1c] text-white">
       {/* Navigation */}
       <header className="container mx-auto py-4 px-4 flex items-center justify-between">
         <div className="flex items-center">
@@ -41,7 +41,7 @@ function Home() {
       </header>
 
       {/* Hero Section */}
-      <section className="container mx-auto px-4 pt-16 pb-32 text-center relative">
+      <section className="container mx-auto bg-[url('./assets/bg.svg')] text-center relative">
         <h1 className="text-4xl md:text-5xl font-bold mb-2 max-w-3xl mx-auto">
           Experience new
           <br />
@@ -216,7 +216,7 @@ function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="container mx-auto px-4 py-12">
+      {/* <section className="container mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-2 text-center">Frequently asked questions</h2>
         <p className="text-center opacity-80 mb-8">Everything you need to know about the product and billing.</p>
 
@@ -249,10 +249,10 @@ function Home() {
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </section>
+      </section> */}
 
       {/* CTA Section */}
-      <section className="container mx-auto px-4 py-16">
+      <section className="container mx-auto px-4 py-16 bg-[url('./assets/bg.svg')]">
         <div className="bg-[#1e0e34] rounded-xl p-8 text-center">
           <h2 className="text-2xl md:text-3xl font-bold mb-4">
             Take the next step toward optimized &<br />
@@ -291,9 +291,7 @@ function Home() {
                 <div className="w-8 h-8 flex items-center justify-center rounded-full border border-white/20">
                   <Instagram className="w-4 h-4" />
                 </div>
-                <div className="w-8 h-8 flex items-center justify-center rounded-full border border-white/20">
-                  <aedin className="w-4 h-4" />
-                </div>
+                
               </div>
             </div>
           </div>
@@ -330,9 +328,9 @@ function Home() {
                   className="w-full bg-[#130a1c] border border-gray-700 rounded-md p-3 text-white"
                 ></textarea>
               </div>
-              <Button className="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md py-3">
+              <button className="w-full bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md py-3">
                 Send Message
-              </Button>
+              </button>
             </form>
           </div>
         </div>
@@ -348,7 +346,7 @@ function Home() {
               <Facebook className="w-5 h-5 opacity-70" />
               <Twitter className="w-5 h-5 opacity-70" />
               <Instagram className="w-5 h-5 opacity-70" />
-              <aedin className="w-5 h-5 opacity-70" />
+            
             </div>
           </div>
 

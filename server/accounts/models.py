@@ -1,0 +1,93 @@
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.db import models, transaction
+from django.db.models import JSONField
+import logging
+from django.utils.translation import gettext_lazy as _
+
+logger = logging.getLogger(__name__)
+class CustomUserManager(BaseUserManager):
+    def create_user(self, email, username, password=None, **extra_fields):
+        """
+        Create and return a regular user with an email and password.
+        """
+        if not email:
+            raise ValueError('The Email field must be set')
+        email = self.normalize_email(email)
+        user = self.model(email=email, username=username, **extra_fields)
+        user.set_password(password)
+        
+        user.save()
+        return user
+
+    def create_superuser(self, email, username, password=None, **extra_fields):
+        """
+        Create and return a superuser with an email, username, and password.
+        """
+        extra_fields.setdefault('is_staff', True)
+        extra_fields.setdefault('is_superuser', True)
+        logger.info(f"Creating superuser: {email}, {username}")  
+
+        return self.create_user(email, username, password, **extra_fields)
+
+class CustomUser(AbstractBaseUser, PermissionsMixin):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=50, unique=True)
+    first_name = models.CharField(max_length=50, blank=True)
+    last_name = models.CharField(max_length=50, blank=True)
+
+    is_active = models.BooleanField(default=True)
+    is_staff = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
+    is_profile = models.BooleanField(default=False)
+    is_profile_complete =models.BooleanField(default=False)
+    is_email_verified = models.BooleanField(default=False)
+    is_creator = models.BooleanField(default=True)
+
+    objects = CustomUserManager()
+
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['username']
+
+    
+    def __str__(self):
+        return self.username
+
+    def save(self, *args, **kwargs):
+        if not self.username:
+            self.username = "user"+{self.email}
+        super().save(*args, **kwargs)
+
+
+
+class CreatorProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='creator_profile')
+    gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')], null=True, blank=True)
+    display_name = models.CharField(max_length=255, null=True, blank=True)
+    date_of_birth = models.DateField(null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    category_of_work = JSONField(default=list, blank=True)
+
+    
+
+    def __str__(self):
+        return f'{self.user.username} - Creator Profile'
+    def save(self, *args, **kwargs):
+        self.user.is_creator = True
+        super().save(*args, **kwargs)
+
+    
+
+class ProjectProfile(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='project_profile')
+    project_name = models.CharField(max_length=255, null=True, blank=True)
+    bio = models.TextField(null=True, blank=True)
+    industry = models.CharField(max_length=255, null=True, blank=True)
+    talents_needed = JSONField(default=list, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} - Project Profile'
+    
+    def save(self, *args, **kwargs):
+        self.user.is_creator = False
+        super().save(*args, **kwargs)
