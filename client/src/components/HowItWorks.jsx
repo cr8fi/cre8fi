@@ -3,7 +3,7 @@ import React from "react";
 
 const HowItWorks = () => {
   return (
-    <section className="section" id="how-it-works">
+    <section className="section container" id="how-it-works">
       <h2>How It Works</h2>
       <p>
         We provide a streamlined process for creators to upload, showcase, and
