@@ -11,7 +11,7 @@ import FooterSection from "../components/Footer";
 
 const HomePage = () => {
   return (
-    <div className="min-h-screen text-white bg-gradient-to-b from-[#1a0b2e]  to-[#130a1c]">
+    <div className="min-h-screen w-full text-white bg-gradient-to-b from-[#1a0b2e]  to-[#130a1c]">
       <NavBar />
       <HeroSection />
       <MissionAndVision />

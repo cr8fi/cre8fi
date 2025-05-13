@@ -19,7 +19,7 @@ const cardVariants = {
 
 const MissionAndVision = () => {
   return (
-    <section className="font-['Sora'] bg-[url('./assets/bg.svg')] bg-cover text-white px-6 md:px-[120px] py-10 md:py-[80px] w-full flex justify-center">
+    <section className="container font-['Sora'] bg-[url('./assets/bg.svg')] bg-cover text-white px-6 md:px-[120px] py-10 md:py-[80px] w-full flex justify-center">
       <div className="max-w-[1440px] w-full flex flex-col gap-[60px] md:gap-[100px]">
         {/* Mission Section */}
         <motion.div
