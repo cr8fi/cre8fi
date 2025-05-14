@@ -42,7 +42,7 @@ const NavBar = () => {
           className="w-[115.22px] h-[46px] text-[36px] leading-[1] font-bold text-white font-spaceGrotesk tracking-normal"
           style={{ marginTop: "-7.5px", marginLeft: "15.2px" }}
         >
-          Cr8fi
+          Cre8fi
         </div>
 
         <button

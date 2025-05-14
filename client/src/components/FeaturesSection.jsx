@@ -61,7 +61,7 @@ const FeaturesSection = () => {
           </p>
         </div>
 
-        {/* Grid container: stacks on mobile, 2-cols on md+ */}
+        
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
           {features.map((feature, index) => {
             const height =
