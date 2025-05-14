@@ -1,0 +1,30 @@
+import Button from "../Components/Button";
+import Header from "../Components/Header";
+import Input from "../Components/Input";
+
+export default function Form3() {
+  return (
+    <form action="#" className="py-10 px-20 flex flex-col gap-10">
+      <Header span="Cre8Fi?" />
+
+      <fieldset className="flex flex-col gap-6">
+        <Input
+          type="text"
+          name="name"
+          id="name"
+          heading="Display Name"
+          placeholder="Willbur Wright"
+        />
+        <Input
+          type="text"
+          name="name"
+          id="username"
+          heading="Username"
+          placeholder="Yourbestdesigner123"
+        />
+      </fieldset>
+
+      <Button />
+    </form>
+  );
+}
