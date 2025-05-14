@@ -98,7 +98,7 @@ const NavBar = () => {
               Log in
             </Link>
 
-            <Link to="/signup" onClick={toggleMenu}>
+            <Link to="/register" onClick={toggleMenu}>
               Sign Up
             </Link>
           </div>

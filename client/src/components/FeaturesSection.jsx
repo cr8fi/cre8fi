@@ -1,4 +1,19 @@
 import { FaGem, FaUsers, FaUserCircle, FaStore } from "react-icons/fa";
+import { motion } from "framer-motion";
+
+const cardVariants = {
+  offscreen: { opacity: 0, y: 100, rotateY: -15 },
+  onscreen: {
+    opacity: 1,
+    y: 0,
+    rotateY: 0,
+    transition: {
+      type: "spring",
+      bounce: 0.2,
+      duration: 1,
+    },
+  },
+};
 
 const features = [
   {
@@ -30,7 +45,13 @@ const features = [
 const FeaturesSection = () => {
   return (
     <section className="container font-['Sora'] bg-[url('/assets/bg.svg')] bg-cover bg-center bg-no-repeat py-20 px-6 text-white flex justify-center">
-      <div className="w-full max-w-[1202.47px]">
+      <motion.div
+        className="w-full max-w-[1202.47px]"
+        initial="offscreen"
+        whileInView="onscreen"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={cardVariants}
+      >
         <div className="max-w-[768.5px] mx-auto flex flex-col items-center gap-[9px] mb-[60px] text-center">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold">
             Our Features
@@ -44,7 +65,7 @@ const FeaturesSection = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[24px]">
           {features.map((feature, index) => {
             const height =
-              index === 0 || index === 3 ? "h-[320px]" : "h-[180px]";
+              index === 0 || index === 3 ? "h-[320px]" : "h-[200px]";
 
             return (
               <div
@@ -54,15 +75,17 @@ const FeaturesSection = () => {
                 <div className="w-[60px] h-[60px] flex items-center justify-center rounded-[12px] border border-white/20">
                   {feature.icon}
                 </div>
-                <h3 className="text-lg sm:text-xl font-semibold">
+                <h3 className="text-lg sm:text-xl text-left font-semibold">
                   {feature.title}
                 </h3>
-                <p className="text-sm text-gray-300">{feature.description}</p>
+                <p className="text-sm text-left text-white">
+                  {feature.description}
+                </p>
               </div>
             );
           })}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 };
