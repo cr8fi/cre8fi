@@ -1,9 +1,9 @@
-import FormContainer from "./UI/FormContainer";
+import MultiStepsForm from "./UI/MultiStepsForm";
 
 export default function Dashboard() {
   return (
     <section className="text-white">
-      <FormContainer />
+      <MultiStepsForm />
     </section>
   );
 }

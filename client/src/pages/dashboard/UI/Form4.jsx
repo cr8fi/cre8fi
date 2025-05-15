@@ -4,7 +4,7 @@ import Input from "../Components/Input";
 
 export default function Form4() {
   return (
-    <form action="#" className="py-10 px-20 flex flex-col gap-10">
+    <>
       <Header text="Date of Birth" />
 
       <fieldset className="flex flex-col gap-6">
@@ -24,8 +24,6 @@ export default function Form4() {
           paragraph="I need to find creative talents and manage my projects"
         />
       </fieldset>
-
-      <Button />
-    </form>
+    </>
   );
 }
