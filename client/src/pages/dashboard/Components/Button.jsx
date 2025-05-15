@@ -1,7 +1,11 @@
-export default function Button() {
+export default function Button({ onClick, text, type }) {
   return (
-    <button className="w-full  bg-gradient-to-b from-[#4565DB] to-[#9C39FF] p-2 rounded">
-      Next
+    <button
+      type={type ?? "button"}
+      className="w-full bg-gradient-to-b from-[#4565DB] to-[#9C39FF] p-2 rounded"
+      onClick={onClick}
+    >
+      {text}
     </button>
   );
 }
