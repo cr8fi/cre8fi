@@ -4,7 +4,7 @@ import Input from "../Components/Input";
 
 export default function Form3() {
   return (
-    <form action="#" className="py-10 px-20 flex flex-col gap-10">
+    <>
       <Header span="Cre8Fi?" />
 
       <fieldset className="flex flex-col gap-6">
@@ -23,8 +23,6 @@ export default function Form3() {
           placeholder="Yourbestdesigner123"
         />
       </fieldset>
-
-      <Button />
-    </form>
+    </>
   );
 }
