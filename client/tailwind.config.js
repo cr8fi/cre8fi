@@ -6,6 +6,10 @@ export default {
       fontFamily: {
         spaceGrotesk: ['"Space Grotesk"', "sans-serif"],
       },
+      perspective: {
+        1000: "1000px",
+      },
+
       keyframes: {
         "fade-in-up": {
           "0%": {
