@@ -35,7 +35,7 @@ function Register() {
         alert("Passwords do not match");
         return;
       }
-      const response = await fetch('https://cre8fi.onrender.com/register', {
+      const response = await fetch('https://cre8fi.onrender.com/register/', {
         method: 'POST',
         mode: 'cors',
         headers: {
