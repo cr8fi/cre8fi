@@ -60,3 +60,25 @@ class CustomUserSerializer(serializers.ModelSerializer):
             project_profile.save()
 
         return instance
+    
+
+class RegisterSerializer(serializers.ModelSerializer):
+    password = serializers.CharField(write_only=True)
+    verifyPassword = serializers.CharField(write_only=True)
+
+    class Meta:
+        model = CustomUser
+        fields = ['email', 'password', 'verifyPassword']
+
+    def validate(self, data):
+        if data['password'] != data['verifyPassword']:
+            raise serializers.ValidationError("Passwords do not match.")
+        return data
+
+    def create(self, validated_data):
+        validated_data.pop('verifyPassword')
+        user = CustomUser.objects.create_user(
+            email=validated_data['email'],
+            password=validated_data['password']
+        )
+        return user
