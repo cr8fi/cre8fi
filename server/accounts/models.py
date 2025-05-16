@@ -54,8 +54,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         return self.username
 
     def save(self, *args, **kwargs):
-        if not self.username:
-            self.username = "user"+{self.email}
+        
         super().save(*args, **kwargs)
 
 
