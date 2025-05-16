@@ -1,8 +1,9 @@
+import MultiStepsForm from "./UI/MultiStepsForm";
+
 export default function Dashboard() {
   return (
-    <div className="dashboard">
-      <h1>Dashboard</h1>
-      <p>Welcome to the dashboard!</p>
-    </div>
+    <section className="text-white">
+      <MultiStepsForm />
+    </section>
   );
 }
