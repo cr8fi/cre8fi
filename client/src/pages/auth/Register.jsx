@@ -49,7 +49,9 @@ function Register() {
       }
   
       const data = await response.json();
-      console.log('Success:', data);
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+      console.log('Success: Registration Successful');
   
       
       setFormData({ email: '', password: '' });
