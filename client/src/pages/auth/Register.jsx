@@ -12,7 +12,11 @@ function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const [showVerifyPassword, setShowVerifyPassword] = useState(false)
 
-
+  const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    verifyPassword: ''
+  });
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prev => ({
