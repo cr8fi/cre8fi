@@ -3,9 +3,60 @@
 import { useState } from "react"
 import "../../assets/form.css"
 
+
+
+
+
+
 function Register() {
   const [showPassword, setShowPassword] = useState(false)
   const [showVerifyPassword, setShowVerifyPassword] = useState(false)
+
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+
+  const userRegister = async (e) => {
+    e.preventDefault(); 
+  
+    try {
+
+      if (formData.password !== formData.verifyPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+      const response = await fetch('https://cre8fi.onrender.com', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      console.log('Success:', data);
+  
+      
+      setFormData({ email: '', password: '' });
+  
+      
+    } catch (error) {
+      console.error('Error:', error);
+      
+    }
+  };
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('../../assets/bg.png')] bg-cover bg-center">
@@ -21,7 +72,7 @@ function Register() {
           </p>
         </div>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={userRegister}>
           <div className="space-y-2">
             <label htmlFor="email" className="block text-[#b1b5c3] text-sm text-left font-medium">
               Email
@@ -29,6 +80,9 @@ function Register() {
             <input
               id="email"
               type="email"
+              name="email"
+              value={formData.email} 
+              onChange={handleChange} 
               placeholder="dantel@cre8tfi.com"
               className="w-full px-4 py-3 rounded-lg bg-[#2a3352] border border-[#9c39ff]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#9c39ff]/50"
             />
@@ -41,7 +95,10 @@ function Register() {
             <div className="relative">
               <input
                 id="password"
+                name="password"
                 type={showPassword ? "text" : "password"}
+                value={formData.password}
+                onChange={handleChange}
                 placeholder="••••••••••"
                 className="w-full px-4 py-3 rounded-lg bg-[#2a3352] border border-[#9c39ff]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#9c39ff]/50"
               />
@@ -66,6 +123,9 @@ function Register() {
             <div className="relative">
               <input
                 id="verifyPassword"
+                name="verifyPassword"
+                value={formData.verifyPassword || ""}
+                onChange={handleChange}
                 type={showVerifyPassword ? "text" : "password"}
                 placeholder="••••••••••"
                 className="w-full px-4 py-3 rounded-lg bg-[#2a3352] border border-[#9c39ff]/30 text-white focus:outline-none focus:ring-2 focus:ring-[#9c39ff]/50"
