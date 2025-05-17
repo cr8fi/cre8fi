@@ -17,7 +17,7 @@ const INITIAL_DATA = {
   description: "",
   categories: [],
 };
-export default function MultiStepsForm() {
+export default function OnBoardingFlow() {
   const [data, setData] = useState(INITIAL_DATA);
   const [submitted, setSubmitted] = useState(false);
 
