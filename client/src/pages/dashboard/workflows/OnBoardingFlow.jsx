@@ -3,21 +3,36 @@ import Button from "../Components/Button";
 import useMultistepsForm from "../hooks/useMultistepsForm";
 import Form1 from "../UI/Form1";
 
-import Form2 from "../UI/Form2";
-import Form3 from "../UI/Form3";
-import Form4 from "../UI/Form4";
-import Form5 from "../UI/Form5";
-import Form6 from "../UI/Form6";
+import Form2 from "../UI/CreatorForm2";
+import Form3 from "../UI/CreatorForm3";
+import Form4 from "../UI/CreatorForm4";
+import Form5 from "../UI/CreatorForm5";
+import Form6 from "../UI/CreatorForm6";
+
+import ProjectForm2 from "../UI/ProjectForm2";
+import ProjectForm3 from "../UI/ProjectForm3";
+import ProjectForm4 from "../UI/ProjectForm4";
+
 import Success from "../UI/Success";
+
 const INITIAL_DATA = {
   howUseCre8Fi: "",
-  gender: "",
-  displayName: "",
-  userName: "",
-  DOB: { day: "", month: "", year: "" },
-  description: "",
-  categories: [],
+  creator: {
+    gender: "",
+    displayName: "",
+    userName: "",
+    DOB: { day: "", month: "", year: "" },
+    description: "",
+    categories: [],
+  },
+  project: {
+    projectName: "",
+    projectOverview: "",
+    industries: [],
+    talents: [],
+  },
 };
+
 export default function OnBoardingFlow() {
   const [data, setData] = useState(INITIAL_DATA);
   const [submitted, setSubmitted] = useState(false);
@@ -33,15 +48,32 @@ export default function OnBoardingFlow() {
     console.log("Updated Form Data:", data);
   }, [data]);
 
-  const { steps, currentStepIndex, step, next, back, isFirstStep, isLastStep } =
-    useMultistepsForm([
-      <Form1 {...data} updateFields={updateFields} />,
-      <Form2 {...data} updateFields={updateFields} />,
-      <Form3 {...data} updateFields={updateFields} />,
-      <Form4 {...data} updateFields={updateFields} />,
-      <Form5 {...data} updateFields={updateFields} />,
-      <Form6 {...data} updateFields={updateFields} />,
-    ]);
+  const CREATOR_STEPS = [
+    <Form2 {...data.creator} updateFields={updateFields} />,
+    <Form3 {...data.creator} updateFields={updateFields} />,
+    <Form4 {...data.creator} updateFields={updateFields} />,
+    <Form5 {...data.creator} updateFields={updateFields} />,
+    <Form6 {...data.creator} updateFields={updateFields} />,
+  ];
+
+  const PROJECT_STEPS = [
+    <ProjectForm2 {...data.project} updateFields={updateFields} />,
+    <ProjectForm3 {...data.project} updateFields={updateFields} />,
+    <ProjectForm4 {...data.project} updateFields={updateFields} />,
+  ];
+
+  const steps = (() => {
+    if (data.howUseCre8Fi === "project") {
+      return [
+        <Form1 {...data} updateFields={updateFields} />,
+        ...PROJECT_STEPS,
+      ];
+    }
+    return [<Form1 {...data} updateFields={updateFields} />, ...CREATOR_STEPS];
+  })();
+
+  const { currentStepIndex, step, next, back, isFirstStep, isLastStep } =
+    useMultistepsForm(steps);
   function handleSubmit(e) {
     e.preventDefault();
     {
@@ -55,9 +87,9 @@ export default function OnBoardingFlow() {
       onSubmit={handleSubmit}
     >
       <div
-        className={`w-11/12 ${
-          isLastStep && !submitted ? "md:w-[57.5rem]" : "md:w-[37.5rem]"
-        } rounded-2xl p-1 bg-gradient-to-b from-[#4565DB] to-[#9C39FF] overflow-hidden`}
+        className={`w-11/12 rounded-2xl p-1 bg-gradient-to-b from-[#4565DB] to-[#9C39FF] overflow-hidden
+          ${isLastStep && !submitted ? "md:w-[57.5rem]" : "md:w-[37.5rem]"} 
+        `}
       >
         <article className="bg-gradient-to-b from-[#343E63] to-[#121318] rounded-xl">
           <div
