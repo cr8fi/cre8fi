@@ -1,7 +1,7 @@
 import CheckBox from "../Components/CheckBox";
 import Header from "../Components/Header";
 
-const categories = [
+const CATEGORIES = [
   { id: "Creative_Design", text: "Creative & Design" },
   { id: "Content_Community", text: "Content & Community" },
   { id: "Marketing_Branding", text: "Marketing & Branding" },
@@ -22,13 +22,33 @@ const categories = [
   { id: "Tokenomics_DeFi_Engineering", text: "Tokenomics & DeFi Engineering" },
 ];
 
-export default function Form6() {
+export default function Form6({ categories, updateFields }) {
+  function handleCategoryChange(id) {
+    let newCategories;
+    if (categories.includes(id)) {
+      newCategories = categories.filter((cat) => cat !== id);
+    } else if (categories.length < 3) {
+      newCategories = [...categories, id];
+    } else {
+      newCategories = categories; // Do not add more than 3
+    }
+    updateFields("categories", newCategories);
+  }
   return (
     <>
       <Header text="Select up to 3 categories" />
       <fieldset className="flex md:justify-center flex-wrap gap-2">
-        {categories.map((cat) => {
-          return <CheckBox key={cat.id} id={cat.id} text={cat.text} />;
+        {CATEGORIES.map((cat) => {
+          return (
+            <CheckBox
+              key={cat.id}
+              id={cat.id}
+              text={cat.text}
+              checked={categories.includes(cat.id)}
+              disabled={!categories.includes(cat.id) && categories.length >= 3}
+              onChange={() => handleCategoryChange(cat.id)}
+            />
+          );
         })}
       </fieldset>
     </>

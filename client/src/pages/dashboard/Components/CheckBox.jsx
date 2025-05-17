@@ -1,4 +1,4 @@
-export default function CheckBox({ id, text }) {
+export default function CheckBox({ id, text, onChange, checked, disabled }) {
   return (
     <div>
       <input
@@ -6,11 +6,14 @@ export default function CheckBox({ id, text }) {
         id={id}
         name="categories"
         className="hidden peer"
+        onChange={onChange}
+        checked={checked}
+        disabled={disabled}
       />
       <label
-        key={id}
         htmlFor={id}
-        className={`cursor-pointer inline-block w-full p-2 px-4 rounded-full border text-white font-semibold text-sm transition-all peer-checked:text-[#090C17] peer-checked:border-transparent border-[#9C39FF]  peer-checked:from-slate-50 peer-checked:to-slate-100  bg-gradient-to-r from-[#4565DB] to-[#9C39FF]`}
+        className={`inline-block w-full p-2 px-4 rounded-full border text-white font-semibold text-sm transition-all peer-checked:text-[#090C17] peer-checked:border-transparent border-[#9C39FF] peer-checked:from-slate-50 peer-checked:to-slate-100 bg-gradient-to-r from-[#4565DB] to-[#9C39FF]
+          ${disabled ? "cursor-not-allowed" : "cursor-pointer"} `}
       >
         <span>{text}</span>
       </label>
