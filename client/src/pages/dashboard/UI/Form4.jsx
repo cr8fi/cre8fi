@@ -1,37 +1,41 @@
 import Header from "../Components/Header";
+import Number from "../Components/Number";
 
-export default function Form4() {
+export default function Form4({ DOB, updateFields }) {
   return (
     <>
       <Header text="Date of Birth" />
 
       <fieldset className="flex gap-6">
-        <input
-          type="number"
-          name="day"
+        <Number
+          name="DOB"
           id="day"
           placeholder="Day"
+          updateFields={updateFields}
+          DOB={DOB}
+          value={DOB.day}
           min={1}
           max={31}
-          className="peer w-full bg-transparent p-3 rounded-md border outline-none border-[#4565DB] focus:border-[#9C39FF]"
         />
-        <input
-          type="number"
-          name="month"
+        <Number
+          name="DOB"
           id="month"
           placeholder="Month"
+          updateFields={updateFields}
+          DOB={DOB}
+          value={DOB.month}
           min={1}
           max={12}
-          className="peer w-full bg-transparent p-3 rounded-md border outline-none border-[#4565DB] focus:border-[#9C39FF]"
         />
-        <input
-          type="number"
-          name="year"
+        <Number
+          name="DOB"
           id="year"
           placeholder="Year"
+          updateFields={updateFields}
+          DOB={DOB}
+          value={DOB.year}
           min={1900}
-          max={2100}
-          className="peer w-full bg-transparent p-3 rounded-md border outline-none border-[#4565DB] focus:border-[#9C39FF]"
+          max={2024}
         />
       </fieldset>
     </>
