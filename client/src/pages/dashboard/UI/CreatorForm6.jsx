@@ -1,7 +1,7 @@
 import CheckBox from "../Components/CheckBox";
 import Header from "../Components/Header";
 
-const CATEGORIES = [
+const CATEGORIES = Object.freeze([
   { id: "Creative_Design", text: "Creative & Design" },
   { id: "Content_Community", text: "Content & Community" },
   { id: "Marketing_Branding", text: "Marketing & Branding" },
@@ -20,7 +20,7 @@ const CATEGORIES = [
   { id: "DevOps_Tooling", text: "DevOps & Tooling" },
   { id: "Backend_Infrastructure", text: "Backend & Infrastructure" },
   { id: "Tokenomics_DeFi_Engineering", text: "Tokenomics & DeFi Engineering" },
-];
+]);
 
 export default function Form6({ categories, updateFields }) {
   function handleCategoryChange(id) {
@@ -38,18 +38,16 @@ export default function Form6({ categories, updateFields }) {
     <>
       <Header text="Select up to 3 categories" />
       <fieldset className="flex md:justify-center flex-wrap gap-2">
-        {CATEGORIES.map((cat) => {
-          return (
-            <CheckBox
-              key={cat.id}
-              id={cat.id}
-              text={cat.text}
-              checked={categories.includes(cat.id)}
-              disabled={!categories.includes(cat.id) && categories.length >= 3}
-              onChange={() => handleCategoryChange(cat.id)}
-            />
-          );
-        })}
+        {CATEGORIES.map((cat) => (
+          <CheckBox
+            key={cat.id}
+            id={cat.id}
+            text={cat.text}
+            checked={categories.includes(cat.id)}
+            disabled={!categories.includes(cat.id) && categories.length >= 3}
+            onChange={() => handleCategoryChange(cat.id)}
+          />
+        ))}
       </fieldset>
     </>
   );
