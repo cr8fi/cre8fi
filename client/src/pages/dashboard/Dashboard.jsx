@@ -1,9 +1,13 @@
-import MultiStepsForm from "./UI/MultiStepsForm";
+import Sidebar from "./UI/Sidebar";
 
 export default function Dashboard() {
   return (
-    <section className="text-white">
-      <MultiStepsForm />
-    </section>
+    <main className="flex bg-[#101223] min-h-screen font-inter relative">
+      {/* Sidebar */}
+      <Sidebar />
+      {/* Main content */}
+
+      {/* Bottom Navigation for Mobile */}
+    </main>
   );
 }
