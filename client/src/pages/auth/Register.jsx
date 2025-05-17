@@ -1,19 +1,20 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import "../../assets/form.css"
+import { useState } from "react";
+import "../../assets/form.css";
 
 function Register() {
-  const [showPassword, setShowPassword] = useState(false)
-  const [showVerifyPassword, setShowVerifyPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showVerifyPassword, setShowVerifyPassword] = useState(false);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[url('../../assets/bg.png')] bg-cover bg-center">
-
       <div className="w-full max-w-md p-8 mx-4  border-[2px] gradient-border bg-gradient-to-tr from-[#343E63] to-[#121318] shadow-xl">
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-white mb-2">Cre8Fi</h1>
-          <h2 className="text-3xl font-bold text-white mb-2">Create Your Account</h2>
+          <h2 className="text-3xl font-bold text-white mb-2">
+            Create Your Account
+          </h2>
           <p className="text-[#b1b5c3] text-center">
             Join Cre8Fi and start building your
             <br />
@@ -23,7 +24,10 @@ function Register() {
 
         <form className="space-y-5">
           <div className="space-y-2">
-            <label htmlFor="email" className="block text-[#b1b5c3] text-sm text-left font-medium">
+            <label
+              htmlFor="email"
+              className="block text-[#b1b5c3] text-sm text-left font-medium"
+            >
               Email
             </label>
             <input
@@ -35,7 +39,10 @@ function Register() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="password" className="block text-[#b1b5c3] text-sm text-left font-medium">
+            <label
+              htmlFor="password"
+              className="block text-[#b1b5c3] text-sm text-left font-medium"
+            >
               Password
             </label>
             <div className="relative">
@@ -60,7 +67,10 @@ function Register() {
           </div>
 
           <div className="space-y-2">
-            <label htmlFor="verifyPassword" className="block text-[#b1b5c3] text-sm text-left font-medium">
+            <label
+              htmlFor="verifyPassword"
+              className="block text-[#b1b5c3] text-sm text-left font-medium"
+            >
               Verify password
             </label>
             <div className="relative">
@@ -104,7 +114,12 @@ function Register() {
             type="button"
             className="w-full flex items-center justify-center gap-2 py-2.5 px-4 bg-transparent border border-[#9c39ff]/30 text-white font-medium rounded-lg hover:bg-[#3a4362] transition duration-200"
           >
-            <img src="./assets/google.png" alt="Google" width={20} height={20} />
+            <img
+              src="./assets/google.png"
+              alt="Google"
+              width={20}
+              height={20}
+            />
             Sign in with google
           </button>
         </form>
@@ -117,7 +132,7 @@ function Register() {
         </p>
       </div>
     </div>
-  )
+  );
 }
 
 // Simple icon components to replace Lucide icons
@@ -138,7 +153,7 @@ function EyeIcon({ className }) {
       <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
       <circle cx="12" cy="12" r="3" />
     </svg>
-  )
+  );
 }
 
 function EyeOffIcon({ className }) {
@@ -160,7 +175,7 @@ function EyeOffIcon({ className }) {
       <path d="M6.61 6.61A13.526 13.526 0 0 0 2 12s3 7 10 7a9.74 9.74 0 0 0 5.39-1.61" />
       <line x1="2" x2="22" y1="2" y2="22" />
     </svg>
-  )
+  );
 }
 
-export default Register
+export default Register;
