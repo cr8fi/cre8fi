@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "../Components/Button";
 import useMultistepsForm from "../hooks/useMultistepsForm";
 import Form1 from "./Form1";
@@ -8,22 +8,44 @@ import Form4 from "./Form4";
 import Form5 from "./Form5";
 import Form6 from "./Form6";
 import Success from "./Success";
-
+const INITIAL_DATA = {
+  howUseCre8Fi: "",
+  gender: "",
+  displayName: "",
+  userName: "",
+  DOB: { day: "", month: "", year: "" },
+  description: "",
+  categories: [],
+};
 export default function MultiStepsForm() {
+  const [data, setData] = useState(INITIAL_DATA);
   const [submitted, setSubmitted] = useState(false);
+
+  function updateFields(field, value) {
+    setData((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  }
+
+  useEffect(() => {
+    console.log("Updated Form Data:", data);
+  }, [data]);
+
   const { steps, currentStepIndex, step, next, back, isFirstStep, isLastStep } =
     useMultistepsForm([
-      <Form1 />,
-      <Form2 />,
-      <Form3 />,
-      <Form4 />,
-      <Form5 />,
-      <Form6 />,
+      <Form1 {...data} updateFields={updateFields} />,
+      <Form2 {...data} updateFields={updateFields} />,
+      <Form3 {...data} updateFields={updateFields} />,
+      <Form4 {...data} updateFields={updateFields} />,
+      <Form5 {...data} updateFields={updateFields} />,
+      <Form6 {...data} updateFields={updateFields} />,
     ]);
-
   function handleSubmit(e) {
     e.preventDefault();
-    setSubmitted(true);
+    {
+      isLastStep ? setSubmitted(true) : next();
+    }
   }
 
   return (
@@ -52,10 +74,7 @@ export default function MultiStepsForm() {
                 {step}
                 <div className="flex justify-between w-full gap-4">
                   {isFirstStep && <Button onClick={back} text="Previous" />}
-                  {!isLastStep && (
-                    <Button type="button" onClick={next} text="Next" />
-                  )}
-                  {isLastStep && <Button type="submit" text="Submit" />}
+                  <Button type="submit" text={isLastStep ? "Submit" : "Next"} />
                 </div>
               </>
             )}
