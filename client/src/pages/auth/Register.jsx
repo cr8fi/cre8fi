@@ -8,8 +8,57 @@ import Password from "./Components/Password";
 import LogInWithGoogle from "./Components/LogInWithGoogle";
 
 export default function Register() {
-  const [showPassword, setShowPassword] = useState(false);
-  const [showVerifyPassword, setShowVerifyPassword] = useState(false);
+ const [formData, setFormData] = useState({
+    email: '',
+    password: '',
+    verifyPassword: ''
+  });
+  
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+
+  const userRegister = async (e) => {
+    e.preventDefault(); 
+  
+    try {
+
+      if (formData.password !== formData.verifyPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+      const response = await fetch('https://cre8fi.onrender.com/register/', {
+        method: 'POST',
+        mode: 'cors',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+  
+      const data = await response.json();
+      localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
+      console.log('Success: Registration Successful');
+  
+      
+      setFormData({ email: '', password: '' });
+  
+      
+    } catch (error) {
+      console.error('Error:', error);
+      
+    }
+  };
 
   return (
     <form className="min-h-screen flex items-center justify-center bg-[url('../../assets/bg.png')] bg-cover bg-center">
@@ -27,22 +76,24 @@ export default function Register() {
             id="email"
             type="email"
             placeholder="dantel@cre8tfi.com"
+            value={formData.email}
+            onChange={userRegister}
           />
           <Password
             heading="Password"
             id="password"
             type="password"
             placeholder="••••••••••"
-            showPassword={showPassword}
-            onClick={setShowPassword}
+            value={formData.password}
+            onChange={userRegister}
           />
           <Password
             heading="Verify password"
             id="verifyPassword"
             type="password"
             placeholder="••••••••••"
-            showPassword={showVerifyPassword}
-            onClick={setShowVerifyPassword}
+            value={formData.verifyPassword}
+            onChange={userRegister}
           />
 
           <button

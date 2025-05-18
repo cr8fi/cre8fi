@@ -3,7 +3,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import TokenAuthentication
 from rest_framework.exceptions import PermissionDenied
 from .models import CustomUser
-from .serializers import CustomUserSerializer
+from .serializers import CustomUserSerializer, RegisterSerializer
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
@@ -39,15 +39,22 @@ class CustomUserViewSet(viewsets.ModelViewSet):
 
 
 class RegisterView(APIView):
-    permission_classes = [AllowAny]  # Allow everyone to register
+    permission_classes = [AllowAny]
 
-    def post(self, request, *args, **kwargs):
-        serializer = CustomUserSerializer(data=request.data)
+    def post(self, request):
+        serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
             user = serializer.save()
-            return Response({"message": "User created successfully."}, status=status.HTTP_201_CREATED)
+
+            refresh = RefreshToken.for_user(user)
+            access_token = str(refresh.access_token)
+
+            return Response({
+                "message": "User created successfully",
+                "access_token": access_token,
+                "refresh_token": str(refresh),
+            }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
 
 class UpdateView(APIView):
     permission_classes = [IsAuthenticated]  # Only authenticated users can update
