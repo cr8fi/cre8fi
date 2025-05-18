@@ -1,10 +1,17 @@
-export default function CheckBox({ id, text, onChange, checked, disabled }) {
+export default function CheckBox({
+  id,
+  name,
+  text,
+  onChange,
+  checked,
+  disabled,
+}) {
   return (
     <div>
       <input
         type="checkbox"
         id={id}
-        name="categories"
+        name={name}
         className="hidden peer"
         onChange={onChange}
         checked={checked}

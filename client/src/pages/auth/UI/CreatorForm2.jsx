@@ -1,6 +1,4 @@
-import Button from "../Components/Button";
 import Header from "../Components/Header";
-import Input from "../Components/Input";
 import Radio from "../Components/Radio";
 
 export default function Form2({ gender, updateFields }) {

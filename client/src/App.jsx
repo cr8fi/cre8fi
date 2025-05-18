@@ -7,7 +7,8 @@ import NewPassword from "./pages/auth/NewPassword";
 import Login from "./pages/auth/Login";
 import HomePage from "./pages/HomePage";
 import Home from "./pages/Home";
-import Dashboard from "./pages/dashboard/Dashboard";
+import Dashboard from "./pages/Dashboard";
+import OnBoarding from "./pages/auth/OnBoarding";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
       <Route path="/" element={<HomePage />} />
       <Route path="/home" element={<Home />} />
       <Route path="/dashboard" element={<Dashboard />} />
+      <Route path="/onboarding" element={<OnBoarding />} />
     </Routes>
   );
 }

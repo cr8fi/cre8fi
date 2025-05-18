@@ -1,13 +1,14 @@
+"use client";
 import { useEffect, useState } from "react";
-import Button from "../Components/Button";
-import useMultistepsForm from "../hooks/useMultistepsForm";
-import Form1 from "./Form1";
-import Form2 from "./Form2";
-import Form3 from "./Form3";
-import Form4 from "./Form4";
-import Form5 from "./Form5";
-import Form6 from "./Form6";
-import Success from "./Success";
+import Button from "./Components/Button";
+import useMultistepsForm from "./hooks/useMultistepsForm";
+import Form1 from "./UI/Form1";
+import Form2 from "./UI/CreatorForm2";
+import Form3 from "./UI/CreatorForm3";
+import Form4 from "./UI/CreatorForm4";
+import Form5 from "./UI/CreatorForm5";
+import Form6 from "./UI/CreatorForm6";
+import Success from "./UI/Success";
 const INITIAL_DATA = {
   howUseCre8Fi: "",
   gender: "",
@@ -17,7 +18,7 @@ const INITIAL_DATA = {
   description: "",
   categories: [],
 };
-export default function MultiStepsForm() {
+export default function CreateAccountFlow() {
   const [data, setData] = useState(INITIAL_DATA);
   const [submitted, setSubmitted] = useState(false);
 
