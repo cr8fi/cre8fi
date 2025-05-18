@@ -14,13 +14,13 @@ export default function Register() {
     verifyPassword: "",
   });
 
-  const handleChange = (e) => {
+  function handleChange(e) {
     const { name, value } = e.target;
     setFormData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  };
+  }
 
   const userRegister = async (e) => {
     e.preventDefault();
@@ -53,7 +53,6 @@ export default function Register() {
       console.error("Error:", error);
     }
   };
-
   return (
     <form
       onSubmit={userRegister}
@@ -62,15 +61,19 @@ export default function Register() {
       <div className="w-full max-w-md p-8 mx-4 border-2 gradient-border bg-gradient-to-tr from-[#343E63] to-[#121318] shadow-xl">
         <HeaderTwo
           header="Create Your Account"
-          paragraph={`Join Cre8Fi and start building your ${(
-            <br />
-          )}creative future.`}
+          paragraph={
+            <>
+              Join Cre8Fi and start building your <br />
+              creative future.
+            </>
+          }
         />
 
         <article className="space-y-5">
           <LoginInput
             heading="Email"
             id="email"
+            name="email"
             type="email"
             placeholder="dantel@cre8tfi.com"
             value={formData.email}
@@ -79,7 +82,7 @@ export default function Register() {
           <Password
             heading="Password"
             id="password"
-            type="password"
+            name="password"
             placeholder="••••••••••"
             value={formData.password}
             onChange={handleChange}
@@ -87,7 +90,7 @@ export default function Register() {
           <Password
             heading="Verify password"
             id="verifyPassword"
-            type="password"
+            name="verifyPassword"
             placeholder="••••••••••"
             value={formData.verifyPassword}
             onChange={handleChange}
