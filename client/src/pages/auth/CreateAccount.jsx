@@ -7,7 +7,7 @@ import CreateAccountForm1 from "./UI/CreateAccountForm1";
 import CreateAccountForm2 from "./UI/CreateAccountForm2";
 import CreateAccountForm3 from "./UI/CreateAccountForm3";
 import HeaderTwo from "./Components/HeaderTwo";
-import checked from "../auth/assets/valid.svg";
+import { Check } from "lucide-react";
 export default function CreateAccount() {
   const [submitted, setSubmitted] = useState(false);
   const { step, next, isLastStep } = useMultistepsForm([
@@ -26,7 +26,11 @@ export default function CreateAccount() {
           <>
             <article className="text-center flex flex-col items-center justify-center gap-5 text-slate-50">
               <HeaderTwo />
-              <img src={checked} alt="checked" />
+              <div className="flex justify-center">
+                <div className="w-36 h-36 rounded-full flex items-center justify-center border-4 border-[#00ff1e]">
+                  <Check className="w-24 h-24 text-[#00ff1e] stroke-[3]" />
+                </div>
+              </div>
               <h2 className="text-xl font-bold">Completed</h2>
 
               <p className="text-sm">

@@ -1,5 +1,4 @@
 import { Routes, Route, Link } from "react-router-dom";
-import Register from "./pages/auth/Register";
 import PasswordReset from "./pages/auth/PasswordReset";
 import PasswordResetCode from "./pages/auth/PasswordResetCode";
 import SuccessScreen from "./components/SuccessScreen";
@@ -9,11 +8,12 @@ import HomePage from "./pages/HomePage";
 import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import OnBoarding from "./pages/auth/OnBoarding";
+import CreateAccount from "./pages/auth/CreateAccount";
 
 function App() {
   return (
     <Routes>
-      <Route path="/register" element={<Register />} />
+      <Route path="/register" element={<CreateAccount />} />
       <Route path="/reset" element={<PasswordReset />} />
       <Route path="/code" element={<PasswordResetCode />} />
       <Route path="/success" element={<SuccessScreen />} />

@@ -3,6 +3,7 @@ import LoginInput from "../Components/LoginInput";
 import Password from "../Components/Password";
 import LogInWithGoogle from "../Components/LogInWithGoogle";
 import HeaderTwo from "../Components/HeaderTwo";
+import { NavLink } from "react-router-dom";
 
 export default function CreateAccountForm1({ handleNext }) {
   const [formData, setFormData] = useState({
@@ -146,9 +147,9 @@ export default function CreateAccountForm1({ handleNext }) {
       </form>
       <p className="mt-8 text-center text-sm text-[#777e90]">
         Already have an account?{" "}
-        <a href="#" className="text-white font-semibold">
-          SIGNUP HERE
-        </a>
+        <NavLink to="/login" className="text-white font-semibold">
+          Login
+        </NavLink>
       </p>
     </>
   );
