@@ -1,7 +1,8 @@
-"use client"
+"use client";
 
-import { Check } from "lucide-react"
-import "../assets/form.css"
+import { Check } from "lucide-react";
+import "../assets/form.css";
+import { NavLink } from "react-router-dom";
 
 function SuccessScreen() {
   return (
@@ -18,19 +19,19 @@ function SuccessScreen() {
 
           <div className="space-y-2">
             <h2 className="text-2xl font-semibold text-white">Completed</h2>
-            <p className="text-white/80">You've successfully updated your password</p>
+            <p className="text-white/80">
+              You've successfully updated your password
+            </p>
           </div>
-
-          <button
-            
+          <NavLink
+            to="/login"
             className="w-full py-3 px-4 bg-gradient-to-tr from-[#4565DB] to-[#9C39FF] hover:bg-[#8930e0] text-white font-medium rounded-lg transition duration-200"
-            onClick={() => alert("Button clicked!")}
           >
             Back to Login
-          </button>
+          </NavLink>
         </div>
       </div>
     </div>
-  )
+  );
 }
-export default  SuccessScreen
+export default SuccessScreen;
