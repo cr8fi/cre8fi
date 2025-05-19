@@ -1,87 +1,44 @@
 "use client";
-import { useEffect, useState } from "react";
-import Button from "./Components/Button";
+
+import { useState } from "react";
+import "../../assets/form.css";
 import useMultistepsForm from "./hooks/useMultistepsForm";
-import Form1 from "./UI/Form1";
-import Form2 from "./UI/CreatorForm2";
-import Form3 from "./UI/CreatorForm3";
-import Form4 from "./UI/CreatorForm4";
-import Form5 from "./UI/CreatorForm5";
-import Form6 from "./UI/CreatorForm6";
-import Success from "./UI/Success";
-const INITIAL_DATA = {
-  howUseCre8Fi: "",
-  gender: "",
-  displayName: "",
-  userName: "",
-  DOB: { day: "", month: "", year: "" },
-  description: "",
-  categories: [],
-};
-export default function CreateAccountFlow() {
-  const [data, setData] = useState(INITIAL_DATA);
+import CreateAccountForm1 from "./UI/CreateAccountForm1";
+import CreateAccountForm2 from "./UI/CreateAccountForm2";
+import CreateAccountForm3 from "./UI/CreateAccountForm3";
+import HeaderTwo from "./Components/HeaderTwo";
+import checked from "../auth/assets/valid.svg";
+export default function CreateAccount() {
   const [submitted, setSubmitted] = useState(false);
-
-  function updateFields(field, value) {
-    setData((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  }
-
-  useEffect(() => {
-    console.log("Updated Form Data:", data);
-  }, [data]);
-
-  const { steps, currentStepIndex, step, next, back, isFirstStep, isLastStep } =
-    useMultistepsForm([
-      <Form1 {...data} updateFields={updateFields} />,
-      <Form2 {...data} updateFields={updateFields} />,
-      <Form3 {...data} updateFields={updateFields} />,
-      <Form4 {...data} updateFields={updateFields} />,
-      <Form5 {...data} updateFields={updateFields} />,
-      <Form6 {...data} updateFields={updateFields} />,
-    ]);
-  function handleSubmit(e) {
-    e.preventDefault();
-    {
-      isLastStep ? setSubmitted(true) : next();
-    }
-  }
+  const { step, next, isLastStep } = useMultistepsForm([
+    <CreateAccountForm1 handleNext={() => next()} />,
+    <CreateAccountForm2 handleNext={() => next()} />,
+    <CreateAccountForm3
+      handleNext={() => next()}
+      valid={() => setSubmitted(!submitted)}
+    />,
+  ]);
 
   return (
-    <form
-      className="w-full h-svh flex justify-center items-center font-[Sora] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-[#120C7A] to-[#030214]"
-      onSubmit={handleSubmit}
-    >
-      <div
-        className={`w-11/12 ${
-          isLastStep && !submitted ? "md:w-[57.5rem]" : "md:w-[37.5rem]"
-        } rounded-2xl p-1 bg-gradient-to-b from-[#4565DB] to-[#9C39FF] overflow-hidden`}
-      >
-        <article className="bg-gradient-to-b from-[#343E63] to-[#121318] rounded-xl">
-          <div
-            style={{
-              width: `${((currentStepIndex + 1) / steps.length) * 100}%`,
-              transition: "width 0.5s cubic-bezier(0.4,0,0.2,1)",
-            }}
-            className={`py-2.5 bg-gradient-to-b from-[#4565DB] to-[#9C39FF] `}
-          ></div>
-          <section className="md:py-10 py-5 md:px-20 px-10 flex flex-col gap-10">
-            {submitted ? (
-              <Success />
-            ) : (
-              <>
-                {step}
-                <div className="flex justify-between w-full gap-4">
-                  {isFirstStep && <Button onClick={back} text="Previous" />}
-                  <Button type="submit" text={isLastStep ? "Submit" : "Next"} />
-                </div>
-              </>
-            )}
-          </section>
-        </article>
+    <section className="min-h-screen flex items-center justify-center bg-[url('../../assets/bg.png')] bg-cover bg-center">
+      <div className="w-full max-w-md p-8 mx-4 border-2 gradient-border bg-gradient-to-tr from-[#343E63] to-[#121318] shadow-xl">
+        {isLastStep && submitted ? (
+          <>
+            <article className="text-center flex flex-col items-center justify-center gap-5 text-slate-50">
+              <HeaderTwo />
+              <img src={checked} alt="checked" />
+              <h2 className="text-xl font-bold">Completed</h2>
+
+              <p className="text-sm">
+                You’ve created an account. <br />
+                wait to be redirected
+              </p>
+            </article>
+          </>
+        ) : (
+          step
+        )}
       </div>
-    </form>
+    </section>
   );
 }
