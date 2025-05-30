@@ -35,23 +35,24 @@ class RegisterView(APIView):
 
 
 class VerifyEmail(APIView):
-    def get(self, request):
-        token = request.GET.get('token')
+    def post(self, request):
+        token = request.data.get('token')
+
         try:
             payload = jwt.decode(token, settings.SECRET_KEY, algorithms=["HS256"])
             user = CustomUser.objects.get(id=payload['user_id'])
-            if not user.is_email_verified:
-                user.is_email_verified = True
+
+            if not user.is_verified:
+                user.is_verified = True
                 user.is_active = True
                 user.save()
-            return Response({'email': 'Successfully activated'}, status=status.HTTP_200_OK)
+
+            return Response({'message': 'Email successfully verified'}, status=status.HTTP_200_OK)
+
         except jwt.ExpiredSignatureError:
-            return Response({'error': 'Activation link expired'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'error': 'Token expired'}, status=status.HTTP_400_BAD_REQUEST)
         except jwt.exceptions.DecodeError:
             return Response({'error': 'Invalid token'}, status=status.HTTP_400_BAD_REQUEST)
-
-
-
 
 
 

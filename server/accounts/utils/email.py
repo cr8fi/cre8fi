@@ -2,16 +2,19 @@ from django.urls import reverse
 from django.conf import settings
 from django.core.mail import send_mail
 from rest_framework_simplejwt.tokens import RefreshToken
-import jwt
 
 def send_verification_email(user, request):
-    token = RefreshToken.for_user(user).access_token
-    relative_link = reverse('email-verify')
-    absurl = f'{request.scheme}://{request.get_host()}{relative_link}?token={str(token)}'
-    email_body = f'Hi {user.username}, Use the link below to verify your email:\n{absurl}'
-    
+    token = str(RefreshToken.for_user(user).access_token)  # or create a custom token if needed
+
+    email_body = (
+        f"Hi {user.username},\n\n"
+        f"Use the following verification code/token to verify your account:\n\n"
+        f"{token}\n\n"
+        f"This code will expire in 5 minutes (or whatever the token's lifetime is).\n"
+    )
+
     send_mail(
-        subject='Verify your email',
+        subject='Your Verification Code',
         message=email_body,
         from_email=settings.DEFAULT_FROM_EMAIL,
         recipient_list=[user.email],
