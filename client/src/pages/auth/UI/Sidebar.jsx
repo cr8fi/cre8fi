@@ -26,7 +26,7 @@ export default function Sidebar() {
   ];
   return (
     <aside
-      className="col-span-1 bg-gradient-to-b from-[#343E63] to-[#121318] p-5 flex flex-col gap-4 justify-between"
+      className="w-1/4 bg-gradient-to-b from-[#343E63] to-[#121318] p-5 flex flex-col gap-4 justify-between"
       aria-label="Sidebar"
     >
       <div className="text-[#0036FF] text-start font-bold text-3xl">Cre8fi</div>
