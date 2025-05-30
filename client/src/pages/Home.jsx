@@ -1,4 +1,4 @@
-import { Facebook, Instagram, Twitter } from "lucide-react"
+import { Facebook, Instagram, Twitter } from "lucide-react";
 
 // import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
@@ -30,13 +30,13 @@ function Home() {
           </nav>
         </div>
         <div className="flex items-center space-x-4">
-          <a href="#" className="text-sm">
+          <NavLink to="/login" className="text-sm">
             Login
-          </a>
+          </NavLink>
           <span>|</span>
-          <a href="#" className="text-sm">
+          <NavLink to="/register" className="text-sm">
             Sign up
-          </a>
+          </NavLink>
         </div>
       </header>
 
@@ -50,7 +50,11 @@ function Home() {
         <p className="text-lg opacity-80 max-w-xl mx-auto mb-8">
           Transform your creativity into cryptocurrency with our web3 platform
         </p>
-        <button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md px-8 py-2">Get Started</button>
+        <NavLink to="/register" className="text-sm">
+          <button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md px-8 py-2">
+            Get Started
+          </button>
+        </NavLink>
 
         {/* Circular Gradient */}
         <div className="w-full max-w-3xl h-[300px] mx-auto mt-8 relative">
@@ -60,10 +64,10 @@ function Home() {
 
         {/* Partners */}
         <div className="mt-16">
-          <p className="text-xs uppercase tracking-wider opacity-60 mb-6">OUR PARTNERS</p>
-          <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
-            
-          </div>
+          <p className="text-xs uppercase tracking-wider opacity-60 mb-6">
+            OUR PARTNERS
+          </p>
+          <div className="flex flex-wrap justify-center items-center gap-8 opacity-70"></div>
         </div>
       </section>
 
@@ -72,16 +76,17 @@ function Home() {
         <div className="bg-[#1e0e34] rounded-xl p-8 mb-8">
           <h2 className="text-2xl font-bold mb-4">Our Mission</h2>
           <p className="opacity-80">
-            Empower creators, foster collaborations, ensure transparency, and revolutionize digital content
-            monetization.
+            Empower creators, foster collaborations, ensure transparency, and
+            revolutionize digital content monetization.
           </p>
         </div>
 
         <div className="bg-[#1e0e34] rounded-xl p-8 mb-12">
           <h2 className="text-2xl font-bold mb-4">Our Vision</h2>
           <p className="opacity-80">
-            CreBFi is a decentralized ecosystem of creators, collaborating creators, and consumers, all benefiting from
-            blockchain technology and NFT assets.
+            CreBFi is a decentralized ecosystem of creators, collaborating
+            creators, and consumers, all benefiting from blockchain technology
+            and NFT assets.
           </p>
         </div>
       </section>
@@ -89,7 +94,9 @@ function Home() {
       {/* Features Section */}
       <section className="container mx-auto px-4 py-12">
         <h2 className="text-2xl font-bold mb-2 text-center">Our Features</h2>
-        <p className="text-center opacity-80 mb-12">Discover what CreBFi can do for you</p>
+        <p className="text-center opacity-80 mb-12">
+          Discover what CreBFi can do for you
+        </p>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="bg-[#1e0e34] rounded-xl p-6">
@@ -109,7 +116,8 @@ function Home() {
             </div>
             <h3 className="text-xl font-bold mb-2">Content reward system</h3>
             <p className="opacity-80">
-              Monetize your content with our innovative reward system and receive compensation for your creativity.
+              Monetize your content with our innovative reward system and
+              receive compensation for your creativity.
             </p>
           </div>
 
@@ -127,9 +135,12 @@ function Home() {
                 </svg>
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2">Interactive social features</h3>
+            <h3 className="text-xl font-bold mb-2">
+              Interactive social features
+            </h3>
             <p className="opacity-80">
-              Connect with a thriving creative community, collaborate on projects, and build your network.
+              Connect with a thriving creative community, collaborate on
+              projects, and build your network.
             </p>
           </div>
 
@@ -148,7 +159,10 @@ function Home() {
               </div>
             </div>
             <h3 className="text-xl font-bold mb-2">Creators Profile</h3>
-            <p className="opacity-80">Create a profile that highlights your skills and showcases your portfolio.</p>
+            <p className="opacity-80">
+              Create a profile that highlights your skills and showcases your
+              portfolio.
+            </p>
           </div>
 
           <div className="bg-[#1e0e34] rounded-xl p-6">
@@ -165,9 +179,12 @@ function Home() {
                 </svg>
               </div>
             </div>
-            <h3 className="text-xl font-bold mb-2">Market Place for Service and Assets</h3>
+            <h3 className="text-xl font-bold mb-2">
+              Market Place for Service and Assets
+            </h3>
             <p className="opacity-80">
-              Explore a dynamic marketplace where you can sell and purchase creative services and digital assets.
+              Explore a dynamic marketplace where you can sell and purchase
+              creative services and digital assets.
             </p>
           </div>
         </div>
@@ -182,8 +199,8 @@ function Home() {
             <div className="text-5xl font-bold text-gray-400 mb-6">01</div>
             <h3 className="text-xl font-bold mb-3">Create your profile</h3>
             <p className="opacity-80">
-              Highlight your skills as a professional creator. Complete your profile with your portfolio and get
-              verified.
+              Highlight your skills as a professional creator. Complete your
+              profile with your portfolio and get verified.
             </p>
           </div>
 
@@ -191,7 +208,8 @@ function Home() {
             <div className="text-5xl font-bold text-gray-400 mb-6">02</div>
             <h3 className="text-xl font-bold mb-3">Earn Points</h3>
             <p className="opacity-80">
-              Generate points by creating engaging content, participating in the community, and completing tasks.
+              Generate points by creating engaging content, participating in the
+              community, and completing tasks.
             </p>
           </div>
 
@@ -199,17 +217,21 @@ function Home() {
             <div className="text-5xl font-bold text-gray-400 mb-6">03</div>
             <h3 className="text-xl font-bold mb-3">Market Place</h3>
             <p className="opacity-80">
-              Explore a dynamic marketplace where you can sell and purchase creative services, NFTs, use your earned
-              points to buy or sell goods, software, or NFT sets.
+              Explore a dynamic marketplace where you can sell and purchase
+              creative services, NFTs, use your earned points to buy or sell
+              goods, software, or NFT sets.
             </p>
           </div>
 
           <div className="bg-[#1e0e34] rounded-xl p-8">
             <div className="text-5xl font-bold text-gray-400 mb-6">04</div>
-            <h3 className="text-xl font-bold mb-3">Creators profile and skill matching</h3>
+            <h3 className="text-xl font-bold mb-3">
+              Creators profile and skill matching
+            </h3>
             <p className="opacity-80">
-              Create a profile that highlights your skills and showcases your portfolio. Our AI system will match you
-              with projects and collaborators perfectly suited to your expertise.
+              Create a profile that highlights your skills and showcases your
+              portfolio. Our AI system will match you with projects and
+              collaborators perfectly suited to your expertise.
             </p>
           </div>
         </div>
@@ -259,11 +281,17 @@ function Home() {
             streamlined operations.
           </h2>
           <p className="opacity-80 mb-8 max-w-2xl mx-auto">
-            Discover how our platform can empower your business. No credit card required.
+            Discover how our platform can empower your business. No credit card
+            required.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md px-8 py-2">Get Started</button>
-            <button variant="outline" className="border-white text-white hover:bg-white/10 rounded-md px-8 py-2">
+            <button className="bg-[#3b82f6] hover:bg-[#2563eb] text-white rounded-md px-8 py-2">
+              Get Started
+            </button>
+            <button
+              variant="outline"
+              className="border-white text-white hover:bg-white/10 rounded-md px-8 py-2"
+            >
               Login
             </button>
           </div>
@@ -278,8 +306,8 @@ function Home() {
           <div className="flex items-center">
             <div>
               <p className="opacity-80 mb-6">
-                A good design is not only aesthetically pleasing, but also functional. It should be able to solve a
-                problem.
+                A good design is not only aesthetically pleasing, but also
+                functional. It should be able to solve a problem.
               </p>
               <div className="grid grid-cols-3 gap-4 mb-6">
                 <div className="w-8 h-8 flex items-center justify-center rounded-full border border-white/20">
@@ -291,7 +319,6 @@ function Home() {
                 <div className="w-8 h-8 flex items-center justify-center rounded-full border border-white/20">
                   <Instagram className="w-4 h-4" />
                 </div>
-                
               </div>
             </div>
           </div>
@@ -341,12 +368,13 @@ function Home() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold mb-4">CreBFi</h3>
-            <p className="opacity-70 text-sm mb-4">We make web3 simple, creative and accessible to everyone.</p>
+            <p className="opacity-70 text-sm mb-4">
+              We make web3 simple, creative and accessible to everyone.
+            </p>
             <div className="flex space-x-4">
               <Facebook className="w-5 h-5 opacity-70" />
               <Twitter className="w-5 h-5 opacity-70" />
               <Instagram className="w-5 h-5 opacity-70" />
-            
             </div>
           </div>
 
@@ -406,6 +434,6 @@ function Home() {
         </div>
       </footer>
     </div>
-  )
+  );
 }
-export default Home
+export default Home;
