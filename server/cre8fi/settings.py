@@ -145,6 +145,19 @@ REST_FRAMEWORK = {
 }
 
 
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_HOST_USER = 'your_email@gmail.com'       # your Gmail address
+EMAIL_HOST_PASSWORD = 'your_app_password'      # app password, not your actual email password
+
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
@@ -162,6 +175,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')  
+MEDIA_URL = '/uplaods/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'uplaods')
 
 
 # Default primary key field type

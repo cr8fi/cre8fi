@@ -61,6 +61,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
 
 class CreatorProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='creator_profile')
+    profile_picture = models.ImageField(upload_to="profileImages/", default="avatar.png")
+    cover_pics = models.ImageField(upload_to="coverImage/", default="avatar.png")
     gender = models.CharField(max_length=10, choices=[('M', 'Male'), ('F', 'Female'), ('O', 'Other')], null=True, blank=True)
     display_name = models.CharField(max_length=255, null=True, blank=True)
     date_of_birth = models.DateField(null=True, blank=True)
@@ -79,6 +81,8 @@ class CreatorProfile(models.Model):
 
 class ProjectProfile(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE, related_name='project_profile')
+    profile_picture = models.ImageField(upload_to="projectImages/", default="avatar.png")
+    cover_pics = models.ImageField(upload_to="coverProject/", default="avatar.png")
     project_name = models.CharField(max_length=255, null=True, blank=True)
     bio = models.TextField(null=True, blank=True)
     industry = models.CharField(max_length=255, null=True, blank=True)
