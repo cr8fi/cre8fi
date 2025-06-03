@@ -3,6 +3,12 @@ from django.db import models, transaction
 from django.db.models import JSONField
 import logging
 from django.utils.translation import gettext_lazy as _
+import uuid
+from django.utils import timezone
+from datetime import timedelta
+import random
+import string
+
 
 logger = logging.getLogger(__name__)
 class CustomUserManager(BaseUserManager):
@@ -94,3 +100,40 @@ class ProjectProfile(models.Model):
     def save(self, *args, **kwargs):
         self.user.is_creator = False
         super().save(*args, **kwargs)
+
+
+
+
+User = CustomUser
+
+
+class EmailVerificationOTP(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name='email_otps')
+    otp_code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+    expires_at = models.DateTimeField()
+    is_used = models.BooleanField(default=False)
+    attempts = models.IntegerField(default=0)
+    
+    class Meta:
+        ordering = ['-created_at']
+    
+    def save(self, *args, **kwargs):
+        if not self.otp_code:
+            self.otp_code = self.generate_otp()
+        if not self.expires_at:
+            self.expires_at = timezone.now() + timedelta(minutes=10)  # 10 minutes expiry
+        super().save(*args, **kwargs)
+    
+    @staticmethod
+    def generate_otp():
+        return ''.join(random.choices(string.digits, k=6))
+    
+    def is_expired(self):
+        return timezone.now() > self.expires_at
+    
+    def is_valid(self):
+        return not self.is_used and not self.is_expired() and self.attempts < 3
+    
+    def __str__(self):
+        return f"OTP for {self.user.email} - {self.otp_code}"
