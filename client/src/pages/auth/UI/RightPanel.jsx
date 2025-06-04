@@ -37,7 +37,7 @@ const RANDOMUSER = [
 ];
 export default function RightPanel() {
   return (
-    <section className="p-2 text-white w-1/4 flex flex-col gap-4">
+    <section className="hidden md:col-span-2 p-2 text-white md:flex flex-col gap-4">
       <form action="">
         <input
           type="text"

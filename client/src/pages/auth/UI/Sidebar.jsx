@@ -22,16 +22,26 @@ export default function Sidebar() {
     { icon: <Wallet />, label: "Wallet" },
     { icon: <Settings />, label: "Settings" },
     { icon: <MoreHorizontal />, label: "More" },
-    { icon: "#", label: "Profile" },
   ];
   return (
     <aside
-      className="w-1/4 bg-gradient-to-b from-[#343E63] to-[#121318] p-5 flex flex-col gap-4 justify-between"
+      className="md:h-auto col-span-1 md:col-span-2 bg-gradient-to-b from-[#343E63] to-[#121318] py-8 md:p-5 flex flex-col gap-4 justify-between"
       aria-label="Sidebar"
     >
-      <div className="text-[#0036FF] text-start font-bold text-3xl">Cre8fi</div>
+      <div className="text-[#0036FF] text-start font-bold text-3xl hidden md:flex">
+        Cre8fi
+      </div>
 
-      <nav className="flex flex-col gap-4 mx-4">
+      <nav className="flex flex-col gap-4 mx-4 items-center md:items-start">
+        <button className="w-9 h-9 bg-red-300 border rounded-full inline md:hidden">
+          <img src="#" alt="profile" />
+        </button>
+        <article className="text-white hidden md:flex items-center gap-4 cursor-pointer p-2 rounded-full justify-center md:justify-start">
+          <div className="md:w-5 md:h-5 flex items-center justify-center">
+            <img src="#" alt="profile" />
+          </div>
+          <span className="hidden md:block">Profile</span>
+        </article>
         {navItems.map((item) => (
           <NavItem
             key={item.label}
@@ -42,7 +52,7 @@ export default function Sidebar() {
         ))}
       </nav>
 
-      <div className="flex flex-col gap-2">
+      <div className="hidden md:flex flex-col gap-2">
         <button className="w-full bg-gradient-to-b from-[#4565DB] to-[#9C39FF] text-white p-2 rounded-md font-bold text-lg hover:opacity-90 transition">
           Post
         </button>
@@ -51,6 +61,9 @@ export default function Sidebar() {
           <span>Log out</span>
         </button>
       </div>
+      <button className="md:hidden flex items-center gap-2 text-[#bfc9db] text-sm font-medium p-1 justify-center">
+        <LogOut className="w-7 h-7" />
+      </button>
     </aside>
   );
 }

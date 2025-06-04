@@ -1,96 +1,68 @@
-export default function Feed() {
+import { Bookmark, Combine, Share2, ThumbsUpIcon } from "lucide-react";
+
+export default function Feed({
+  name,
+  userName,
+  userImage,
+  postDate,
+  postTextContent,
+  postImage,
+  likes = 0,
+  retweets = 0,
+  comments = 0,
+  bookmarks = 0,
+  points = 0,
+}) {
   return (
-    <article>
-      <div className="mx-auto bg-black rounded-2xl overflow-hidden shadow-lg border border-[#222]">
-        {/* Header */}
-        <div className="flex items-center gap-3 px-4 pt-4">
+    <article className="bg-black rounded-xl md:rounded-2xl overflow-hidden shadow-lg border border-[#222] md:p-4 p-3">
+      <nav className="flex items-center justify-between">
+        <div className="flex items-center gap-4 text-left">
           <img
-            src="https://i.ibb.co/W6sGDZg/avatar.png"
+            src={userImage}
             alt="Profile"
-            className="w-12 h-12 rounded-full border border-[#2e6cff]"
+            className="md:w-12 w-10 md:h-12 h-10 rounded-full border border-[#2e6cff]"
           />
-          <div>
-            <div className="flex items-center gap-2">
-              <span className="font-bold text-white text-base">
-                The–chain Alhaji
+          <header>
+            <h3 className="flex gap-2 items-center -mb-1">
+              <strong className="text-sm md:text-base">{name.slice(0,10)}</strong>
+              <span className="text-xs hidden md:inline">
+                <sm>Mutuals</sm> · <sm>{postDate}</sm>
               </span>
-              <span className="text-[#b1b5c3] text-xs">
-                Mutuals · 26/02/2024
-              </span>
-            </div>
-            <span className="text-[#b1b5c3] text-sm">@thechainalhaji</span>
-          </div>
-          <div className="ml-auto text-[#b1b5c3] text-xl font-bold cursor-pointer">
-            •••
-          </div>
+            </h3>
+            <span className="text-xs">{userName}</span>
+          </header>
         </div>
-        {/* Post Text */}
-        <div className="px-4 pt-4 pb-2 text-white text-base leading-relaxed whitespace-pre-line">
-          <span className="block mb-2 font-medium">
-            Guess who's back? Your favorite Web3 Alhaji!
-          </span>
-          <span className="block mb-2">
-            I took a break after my last account got suspended now I'm back with
-            a fresh brand.
-          </span>
-          <span className="block mb-2">
-            2025 isn't over, so why not keep burning the flames in my little
-            design kitchen?
-          </span>
-          <span className="block">
-            I’m The Chain Alhaji, your one and only creative solution!
-          </span>
-        </div>
-        {/* Image */}
-        <div className="w-full bg-[#181c2e] flex justify-center items-center rounded-b-2xl overflow-hidden">
-          <div className="relative w-full flex justify-center">
-            <img
-              src="https://i.ibb.co/3r8v8wK/alhaji-demo.png"
-              alt="Creative Solution"
-              className="w-full max-w-md object-cover"
-            />
-            <span className="absolute bottom-6 right-8 text-white text-sm font-medium opacity-80">
-              Every brand
-              <br />
-              creative
-              <br />
-              solution.
-            </span>
-          </div>
+        <button>•••</button>
+      </nav>
+
+      <div>
+        <p className="leading-relaxed text-start text-sm my-4">
+          {postTextContent}
+        </p>
+        <div className="rounded-lg overflow-hidden w-full">
+          <img
+            src={postImage}
+            alt="Creative Solution"
+            className="w-full object-cover"
+          />
         </div>
       </div>
-      <div className="flex items-center gap-8 px-4 py-3 text-white text-base select-none">
+
+      <div className="flex items-center gap-3 justify-between">
         {/* Like */}
-        <span className="flex items-center gap-1">
-          <svg
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M10 18s-6-4.35-6-8.5A4.5 4.5 0 0110 5a4.5 4.5 0 016 4.5C16 13.65 10 18 10 18z" />
-          </svg>
-          198
-        </span>
+        <button className="flex items-center gap-1">
+          <ThumbsUpIcon />
+          {likes}
+        </button>
+
         {/* Retweet */}
-        <span className="flex items-center gap-1">
-          <svg
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M17 8V5a2 2 0 00-2-2H7" />
-            <path d="M7 15v3a2 2 0 002 2h6" />
-            <path d="M7 15l-4-4 4-4" />
-            <path d="M17 8l4 4-4 4" />
-          </svg>
-          10
-        </span>
+        <button className="flex items-center gap-1">
+          <Combine />
+          {retweets}
+        </button>
+
         {/* Comment */}
-        <span className="flex items-center gap-1">
+        <button className="flex items-center gap-1">
           <svg
             width="20"
             height="20"
@@ -101,23 +73,16 @@ export default function Feed() {
             <circle cx="10" cy="10" r="9" />
             <path d="M7 10h6" />
           </svg>
-          20
-        </span>
+          {comments}
+        </button>
         {/* Bookmark */}
-        <span className="flex items-center gap-1">
-          <svg
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M5 3h10a2 2 0 012 2v14l-7-5-7 5V5a2 2 0 012-2z" />
-          </svg>
-          2
-        </span>
+        <button className="flex items-center gap-1">
+          <Bookmark />
+          {bookmarks}
+        </button>
+
         {/* Points */}
-        <span className="flex items-center gap-1">
+        <button className="hidden md:flex items-center gap-1">
           <svg
             width="20"
             height="20"
@@ -128,21 +93,13 @@ export default function Feed() {
             <circle cx="10" cy="10" r="9" />
             <path d="M10 6v4l3 3" />
           </svg>
-          10 points
-        </span>
+          {points} points
+        </button>
+
         {/* Share */}
-        <span className="flex items-center gap-1">
-          <svg
-            width="20"
-            height="20"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-          >
-            <path d="M4 12v-2a4 4 0 014-4h4a4 4 0 014 4v2" />
-            <path d="M12 16v2m-4-2v2" />
-          </svg>
-        </span>
+        <button className="flex items-center gap-1">
+          <Share2 />
+        </button>
       </div>
     </article>
   );
