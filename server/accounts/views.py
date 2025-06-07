@@ -34,13 +34,33 @@ class RegisterView(APIView):
 
             refresh = RefreshToken.for_user(user)
             access_token = str(refresh.access_token)
+            refresh_token = str(refresh)
             otp = EmailVerificationOTP.objects.create(user=user)
             self.send_verification_email(user, otp.otp_code)
-            return Response({
+            user_data = RegisterSerializer(user).data
+            response = Response({
                 "message": "User created successfully",
                 "access_token": access_token,
+                "user":user_data,
                 "refresh_token": str(refresh),
             }, status=status.HTTP_201_CREATED)
+
+        # Set cookies
+            response.set_cookie(
+                key='access_token',
+                value=access_token,
+                httponly=True,
+                secure=True,  # Make sure you're using HTTPS in production
+                samesite='Lax'
+            )
+            response.set_cookie(
+                key='refresh_token',
+                value=refresh_token,
+                httponly=True,
+                secure=True,
+                samesite='Lax'
+            )
+            return response
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
     def send_verification_email(self, user, otp_code):
@@ -53,7 +73,7 @@ class RegisterView(APIView):
                 <p>OTP Code: {otp_code}</p>
                 <p>This code will expire in 10 minutes.</p>
                 <p>If you didn't request this verification, please ignore this email.</p>
-                <p>Best regards,<br>Your App Team</p>
+                <p>Best regards,<br>The Cr8fi Team</p>
             </body>
         </html>
         '''
@@ -71,11 +91,11 @@ class RegisterView(APIView):
             print(f"Error sending verification email: {e}")
     
 @api_view(['POST'])
-@permission_classes([AllowAny])
+@permission_classes([IsAuthenticated])
 def verify_email(request):
     serializer = EmailVerificationSerializer(data=request.data)
     if serializer.is_valid():
-        user = serializer.validated_data['user']
+        user = request.user 
         otp = serializer.validated_data['otp']
         
         # Increment attempts
