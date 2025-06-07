@@ -2,13 +2,39 @@ import { useState } from "react";
 import HeaderTwo from "../Components/HeaderTwo";
 import LoginInput from "../Components/LoginInput";
 
-export default function CreateAccountForm2({ handleNext }) {
+export default function CreateAccountForm2({ handleNext }) { 
   const [formData, setFormData] = useState("");
   function handleSubmit(e) {
     e.preventDefault();
-    console.log("Form submitted with data:", formData);
+    useSendCode(e);
+    console.log("Form submitted with data:", formData); 
     handleNext();
   }
+  const useSendCode = async () => {
+
+    try{
+      const response = await fetch("https://cre8fi.onrender.com/register/", {
+        method: "POST",
+        mode: "cors",
+        credentials: 'include',
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        setLoading(false);
+        setInputErr("Network response was not ok");
+        throw new Error("Network response was not ok");
+      }
+      
+    } catch (error) {
+      setLoading(false);
+      console.error("Error:", error);
+    }
+  };
+
   return (
     <>
       <HeaderTwo paragraph=" Enter your email and we’ll send you a reset link." />
