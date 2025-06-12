@@ -25,52 +25,45 @@ export default function Sidebar() {
   ];
   return (
     <aside
-      className="bg-gradient-to-b from-[#181c2e] to-[#101223] text-white h-screen fixed top-0 left-0 z-40 transition-all duration-300 w-60 md:w-80 border-r border-[#23243a]"
+      className="md:h-auto col-span-1 md:col-span-2 bg-gradient-to-b from-[#343E63] to-[#121318] py-8 md:p-5 flex flex-col gap-4 justify-between"
       aria-label="Sidebar"
     >
-      <div className="flex flex-col h-full justify-between">
-        <div className="flex items-center justify-between">
-          <span className="text-3xl font-extrabold text-[#2e6cff] tracking-tight">
-            Cre8fi
-          </span>
-          <button className="w-8 h-8">✕</button>
-        </div>
-
-        <nav className="flex flex-col gap-1 mt-2">
-          {navItems.map((item) => (
-            <NavItem
-              key={item.label}
-              icon={item.icon}
-              label={item.label}
-              active={item.active}
-            />
-          ))}
-        </nav>
-
-        {/* Post Button */}
-        <div>
-          <div className="px-2 pb-4 mt-4">
-            <button className="w-full bg-gradient-to-r from-[#2e6cff] to-[#a259ff] text-white py-3 rounded-full font-bold text-lg shadow-md hover:opacity-90 transition flex items-center justify-center">
-              <span>Post</span>
-            </button>
-          </div>
-          {/* Profile Section */}
-          <div className="mb-4 px-2">
-            <div className="flex items-center gap-3 p-2 rounded-full hover:bg-[#23243a] transition cursor-pointer">
-              <img
-                src="#"
-                alt="Profile"
-                className="w-10 h-10 rounded-full border-2 border-[#2e6cff]"
-              />
-              <div>
-                <div className="font-semibold leading-tight text-white">
-                  Profile
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="text-[#0036FF] text-start font-bold text-3xl hidden md:flex">
+        Cre8fi
       </div>
+
+      <nav className="flex flex-col gap-4 mx-4 items-center md:items-start">
+        <button className="w-9 h-9 bg-red-300 border rounded-full inline md:hidden">
+          <img src="#" alt="profile" />
+        </button>
+        <article className="text-white hidden md:flex items-center gap-4 cursor-pointer p-2 rounded-full justify-center md:justify-start">
+          <div className="md:w-5 md:h-5 flex items-center justify-center">
+            <img src="#" alt="profile" />
+          </div>
+          <span className="hidden md:block">Profile</span>
+        </article>
+        {navItems.map((item) => (
+          <NavItem
+            key={item.label}
+            icon={item.icon}
+            label={item.label}
+            active={item.active}
+          />
+        ))}
+      </nav>
+
+      <div className="hidden md:flex flex-col gap-2">
+        <button className="w-full bg-gradient-to-b from-[#4565DB] to-[#9C39FF] text-white p-2 rounded-md font-bold text-lg hover:opacity-90 transition">
+          Post
+        </button>
+        <button className="flex items-center gap-2 text-[#bfc9db] text-sm font-medium p-1">
+          <LogOut className="w-4 h-4" />
+          <span>Log out</span>
+        </button>
+      </div>
+      <button className="md:hidden flex items-center gap-2 text-[#bfc9db] text-sm font-medium p-1 justify-center">
+        <LogOut className="w-7 h-7" />
+      </button>
     </aside>
   );
 }
